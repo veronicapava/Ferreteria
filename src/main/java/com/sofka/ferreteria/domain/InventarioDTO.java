@@ -1,26 +1,52 @@
 package com.sofka.ferreteria.domain;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.List;
+import java.util.UUID;
 
 @Document(collection = "inventario")
 public class InventarioDTO {
 
-    @DBRef
-    private List<ProovedoresDTO> proov;
 
+    @Id
+    private String id = UUID.randomUUID().toString().substring(0, 3);
+    private String nombreProducto;
+    private int precioUnd;
+    private int cantidadEnBodega;
     private int cantidadMin;
-
     private int cantidadMax;
 
-    public List<ProovedoresDTO> getProov() {
-        return proov;
+
+    public String getId() {
+        return id;
     }
 
-    public void setProov(List<ProovedoresDTO> proov) {
-        this.proov = proov;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public int getPrecioUnd() {
+        return precioUnd;
+    }
+
+    public void setPrecioUnd(int precioUnd) {
+        this.precioUnd = precioUnd;
+    }
+
+    public int getCantidadEnBodega() {
+        return cantidadEnBodega;
+    }
+
+    public void setCantidadEnBodega(int cantidadEnBodega) {
+        this.cantidadEnBodega = cantidadEnBodega;
     }
 
     public int getCantidadMin() {
@@ -39,12 +65,5 @@ public class InventarioDTO {
         this.cantidadMax = cantidadMax;
     }
 
-    @Override
-    public String toString() {
-        return "InventarioDTO{" +
-                "proov=" + proov +
-                ", cantidadMin=" + cantidadMin +
-                ", cantidadMax=" + cantidadMax +
-                '}';
-    }
 }
+

@@ -1,6 +1,7 @@
 package com.sofka.ferreteria.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -10,11 +11,14 @@ import java.util.UUID;
 public class FacturaDTO {
 
     @Id
-    private String id = UUID.randomUUID().toString().substring(0, 10);
+    private String id = UUID.randomUUID().toString().substring(0, 3);
     private String fecha;
     private String nombreCliente;
     private String nombreVendedor;
-    private List<String> productosComprados;
+
+    @DBRef
+    private List<Compra> productosComprados;
+
 
     public String getId() {
         return id;
@@ -48,22 +52,11 @@ public class FacturaDTO {
         this.nombreVendedor = nombreVendedor;
     }
 
-    public List<String> getProductosComprados() {
+    public List<Compra> getProductosComprados() {
         return productosComprados;
     }
 
-    public void setProductosComprados(List<String> productosComprados) {
+    public void setProductosComprados(List<Compra> productosComprados) {
         this.productosComprados = productosComprados;
-    }
-
-    @Override
-    public String toString() {
-        return "FacturaDTO{" +
-                "id='" + id + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", nombreCliente='" + nombreCliente + '\'' +
-                ", nombreVendedor='" + nombreVendedor + '\'' +
-                ", productosComprados=" + productosComprados +
-                '}';
     }
 }
