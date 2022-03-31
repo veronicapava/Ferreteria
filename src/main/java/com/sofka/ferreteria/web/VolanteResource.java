@@ -1,6 +1,6 @@
 package com.sofka.ferreteria.web;
 
-import com.sofka.ferreteria.domain.VolanteDTO;
+import com.sofka.ferreteria.domain.Volante;
 import com.sofka.ferreteria.service.VolanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,14 @@ public class VolanteResource {
     //Postear un volante
     @PostMapping("/crearvolante")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<VolanteDTO> save(@RequestBody VolanteDTO volantedto){
+    private Mono<Volante> save(@RequestBody Volante volantedto){
         return this.volanteserv.save(volantedto);
     }
 
 
     //Obtener todos los volantes
     @GetMapping("/obtenervolantes")
-    private Flux<VolanteDTO> findAllVolantes(){
+    private Flux<Volante> findAllVolantes(){
         return this.volanteserv.findAll();
     }
 

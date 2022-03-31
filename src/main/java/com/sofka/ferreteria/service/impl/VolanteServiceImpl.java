@@ -1,6 +1,6 @@
 package com.sofka.ferreteria.service.impl;
 
-import com.sofka.ferreteria.domain.VolanteDTO;
+import com.sofka.ferreteria.domain.Volante;
 import com.sofka.ferreteria.repository.VolanteRepository;
 import com.sofka.ferreteria.service.VolanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ public class VolanteServiceImpl implements VolanteService {
     private VolanteRepository volanterepo;
 
     @Override
-    public Mono<VolanteDTO> save(VolanteDTO volantedto) {
+    public Mono<Volante> save(Volante volantedto) {
         return this.volanterepo.save(volantedto);
     }
 
     @Override
-    public Flux<VolanteDTO> findAll() {
+    public Flux<Volante> findAll() {
         return this.volanterepo.findAll();
     }
 }

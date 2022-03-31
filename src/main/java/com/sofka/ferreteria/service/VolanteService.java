@@ -1,12 +1,12 @@
 package com.sofka.ferreteria.service;
 
-import com.sofka.ferreteria.domain.VolanteDTO;
+import com.sofka.ferreteria.domain.Volante;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface VolanteService {
 
-    Mono<VolanteDTO> save(VolanteDTO volantedto);
+    Mono<Volante> save(Volante volantedto);
 
-    Flux<VolanteDTO> findAll();
+    Flux<Volante> findAll();
 }

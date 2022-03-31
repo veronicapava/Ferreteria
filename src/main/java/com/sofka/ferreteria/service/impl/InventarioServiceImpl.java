@@ -1,7 +1,6 @@
 package com.sofka.ferreteria.service.impl;
 
-import com.sofka.ferreteria.domain.FacturaDTO;
-import com.sofka.ferreteria.domain.InventarioDTO;
+import com.sofka.ferreteria.domain.Inventario;
 import com.sofka.ferreteria.repository.InventarioRepository;
 import com.sofka.ferreteria.service.InventarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +16,18 @@ public class InventarioServiceImpl implements InventarioService {
 
     //Guardar inventario
     @Override
-    public Mono<InventarioDTO> save(InventarioDTO invendto){
+    public Mono<Inventario> save(Inventario invendto){
         return this.invenrepo.save(invendto);
     }
 
     //Obtener el inventario
     @Override
-    public Flux<InventarioDTO> findAll() {
+    public Flux<Inventario> findAll() {
         return this.invenrepo.findAll();
     }
 
     @Override
-    public Mono<InventarioDTO> findById(String id) {
+    public Mono<Inventario> findById(String id) {
         return this.invenrepo.findById(id);
     }
 

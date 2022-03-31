@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Document(collection= "proovedores")
-public class VolanteDTO {
+public class Volante {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 3);

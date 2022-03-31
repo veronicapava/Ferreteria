@@ -1,14 +1,14 @@
 package com.sofka.ferreteria.service;
 
-import com.sofka.ferreteria.domain.InventarioDTO;
+import com.sofka.ferreteria.domain.Inventario;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface InventarioService {
 
-    Mono<InventarioDTO> save(InventarioDTO inventario);
+    Mono<Inventario> save(Inventario inventario);
 
-    Flux<InventarioDTO> findAll();
+    Flux<Inventario> findAll();
 
-    Mono<InventarioDTO> findById(String id);
+    Mono<Inventario> findById(String id);
 }

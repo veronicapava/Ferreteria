@@ -1,6 +1,7 @@
 package com.sofka.ferreteria.service.impl;
 
 import com.sofka.ferreteria.domain.Compra;
+import com.sofka.ferreteria.domain.Inventario;
 import com.sofka.ferreteria.repository.CompraRepository;
 import com.sofka.ferreteria.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,18 @@ public class CompraServiceImpl implements CompraService {
     //Guardar una compra
     @Override
     public Mono<Compra> save(Compra compradto)  {
-
+        Inventario inv = new Inventario();
             var articulo = compradto.getArticulo();
             var idArticulo = articulo.getId();
             var articuloEncontrado = servicioInv.findById(idArticulo);
 
             return articuloEncontrado
-                    .flatMap(x -> this.comprarepo.save(compradto))
+                    .flatMap(x -> {
+                        x.setCantidadEnBodega(9998);
+                        System.out.println("Guardando");
+
+                        return this.comprarepo.save(compradto);
+                    })
                     .switchIfEmpty(Mono.empty());
 
     }

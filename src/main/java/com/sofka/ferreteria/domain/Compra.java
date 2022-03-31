@@ -17,17 +17,17 @@ public class Compra {
     private int cantidad;
 
     @DBRef
-    private InventarioDTO articulo;
+    private Inventario articulo;
 
 
     //Getters y setters
 
 
-    public InventarioDTO getArticulo() {
+    public Inventario getArticulo() {
         return articulo;
     }
 
-    public void setArticulo(InventarioDTO articulo) {
+    public void setArticulo(Inventario articulo) {
         this.articulo = articulo;
     }
 

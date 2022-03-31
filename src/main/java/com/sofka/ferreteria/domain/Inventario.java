@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.UUID;
 
 @Document(collection = "inventario")
-public class InventarioDTO {
+public class Inventario {
 
 
     @Id

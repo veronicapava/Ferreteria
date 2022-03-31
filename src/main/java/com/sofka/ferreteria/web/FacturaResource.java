@@ -1,6 +1,6 @@
 package com.sofka.ferreteria.web;
 
-import com.sofka.ferreteria.domain.FacturaDTO;
+import com.sofka.ferreteria.domain.Factura;
 import com.sofka.ferreteria.service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,14 @@ public class FacturaResource {
     //Postear una factura
     @PostMapping("/facturas")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<FacturaDTO> save(@RequestBody FacturaDTO factudto){
+    private Mono<Factura> save(@RequestBody Factura factudto){
          return this.factuserv.save(factudto);
     }
 
 
     //Obtener todas las facturas
     @GetMapping("/facturas")
-    private Flux<FacturaDTO> findAllFacturas(){
+    private Flux<Factura> findAllFacturas(){
         return this.factuserv.findAll();
     }
 

@@ -1,7 +1,7 @@
 package com.sofka.ferreteria.repository;
 
-import com.sofka.ferreteria.domain.VolanteDTO;
+import com.sofka.ferreteria.domain.Volante;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
-public interface VolanteRepository extends ReactiveMongoRepository<VolanteDTO, String> {
+public interface VolanteRepository extends ReactiveMongoRepository<Volante, String> {
 }
