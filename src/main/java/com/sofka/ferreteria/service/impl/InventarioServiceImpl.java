@@ -26,9 +26,30 @@ public class InventarioServiceImpl implements InventarioService {
         return this.invenrepo.findAll();
     }
 
+    //Obtener articulo de inventario por id
     @Override
     public Mono<Inventario> findById(String id) {
         return this.invenrepo.findById(id);
+    }
+
+
+    //Actualizar articulo del inventario
+    @Override
+    public Mono<Inventario> update(String id, Inventario inventario){
+        return this.invenrepo.findById(id)
+                .flatMap(invent -> {
+                    inventario.setId(id);
+                    return save(inventario);
+                }).switchIfEmpty(Mono.empty());
+    }
+
+
+    //ELiminar articulo del inventario
+    @Override
+    public Mono<Inventario> delete(String id) {
+        return this.invenrepo
+                .findById(id)
+                .flatMap(c -> this.invenrepo.deleteById(c.getId()).thenReturn(c));
     }
 
 

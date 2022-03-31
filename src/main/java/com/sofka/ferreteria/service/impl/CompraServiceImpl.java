@@ -44,6 +44,7 @@ public class CompraServiceImpl implements CompraService {
         return this.comprarepo.findAll();
     }
 
+    //Obtener compra por id
     @Override
     public Mono<Compra> findById(String id) {
         return this.comprarepo.findById(id);

@@ -11,4 +11,8 @@ public interface InventarioService {
     Flux<Inventario> findAll();
 
     Mono<Inventario> findById(String id);
+
+    Mono<Inventario> delete(String id);
+
+    Mono<Inventario> update(String id, Inventario cliente);
 }

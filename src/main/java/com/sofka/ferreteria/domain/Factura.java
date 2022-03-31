@@ -13,9 +13,9 @@ public class Factura {
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 3);
     private String fecha;
-    private String nombreCliente;
+    @DBRef
+    private Cliente cliente;
     private String nombreVendedor;
-
     @DBRef
     private List<Compra> productosComprados;
 
@@ -36,12 +36,12 @@ public class Factura {
         this.fecha = fecha;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getNombreVendedor() {
