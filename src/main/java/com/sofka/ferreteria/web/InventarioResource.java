@@ -30,7 +30,7 @@ public class InventarioResource {
 
     //Obtener inventario por id
     @GetMapping("/obtenerinventario/{id}")
-    private Mono<Inventario> findAllInventario(@RequestParam("id") String id){
+    private Mono<Inventario> findAllInventario(@PathVariable("id") String id){
         return this.inventser.findById(id);
     }
 }
