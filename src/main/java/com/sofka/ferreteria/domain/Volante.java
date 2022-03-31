@@ -7,13 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 import java.util.UUID;
 
-@Document(collection= "proovedores")
+@Document(collection= "volante")
 public class Volante {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 3);
     private String fecha;
-    private String nombreProovedor;
+
+    @DBRef
+    Proovedores proovedores;
 
     @DBRef
     private List<Compra> productosRecibidos;
@@ -35,12 +37,12 @@ public class Volante {
         this.fecha = fecha;
     }
 
-    public String getNombreProovedor() {
-        return nombreProovedor;
+    public Proovedores getProovedores() {
+        return proovedores;
     }
 
-    public void setNombreProovedor(String nombreProovedor) {
-        this.nombreProovedor = nombreProovedor;
+    public void setProovedores(Proovedores proovedores) {
+        this.proovedores = proovedores;
     }
 
     public List<Compra> getProductosRecibidos() {
