@@ -15,7 +15,7 @@ public class CompraServiceImpl implements CompraService {
     private CompraRepository comprarepo;
 
     @Autowired
-    InventarioServiceImpl invservi;
+    InventarioServiceImpl servicioInv;
 
 
     //Guardar una compra
@@ -24,7 +24,7 @@ public class CompraServiceImpl implements CompraService {
 
             var articulo = compradto.getArticulo();
             var idArticulo = articulo.getId();
-            var articuloEncontrado = invservi.findById(idArticulo);
+            var articuloEncontrado = servicioInv.findById(idArticulo);
 
             return articuloEncontrado
                     .flatMap(x -> this.comprarepo.save(compradto))
@@ -36,5 +36,10 @@ public class CompraServiceImpl implements CompraService {
     @Override
     public Flux<Compra> findAll() {
         return this.comprarepo.findAll();
+    }
+
+    @Override
+    public Mono<Compra> findById(String id) {
+        return this.comprarepo.findById(id);
     }
 }

@@ -10,6 +10,5 @@ public interface InventarioService {
 
     Flux<InventarioDTO> findAll();
 
-
     Mono<InventarioDTO> findById(String id);
 }

@@ -9,4 +9,6 @@ public interface CompraService {
     Mono<Compra> save(Compra compradto);
 
     Flux<Compra> findAll();
+
+    Mono<Compra> findById(String id);
 }

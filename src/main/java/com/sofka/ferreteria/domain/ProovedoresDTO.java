@@ -11,9 +11,7 @@ public class ProovedoresDTO {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 10);
-
     private String nombreProovedor;
-
     private String fechaEntrega;
 
     private List<String> productosAIngresar;
