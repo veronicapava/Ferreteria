@@ -16,13 +16,10 @@ public class FacturaServiceImpl implements FacturaService {
     @Autowired
     private FacturaRepository facturepo;
 
-    @Autowired
-    private CompraServiceImpl serviciocompra;
 
     //Guardar una factura
     @Override
     public Mono<FacturaDTO> save(FacturaDTO facturadto) {
-       var compras = facturadto.getProductosComprados();
        return this.facturepo.save(facturadto);
     }
 
