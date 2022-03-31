@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+
 import java.util.UUID;
 
 @Document(collection = "compra")
@@ -17,19 +17,20 @@ public class Compra {
     private int cantidad;
 
     @DBRef
-    private List<InventarioDTO> articulo;
+    private InventarioDTO articulo;
 
 
     //Getters y setters
 
 
-    public List<InventarioDTO> getArticulo() {
+    public InventarioDTO getArticulo() {
         return articulo;
     }
 
-    public void setArticulo(List<InventarioDTO> articulo) {
+    public void setArticulo(InventarioDTO articulo) {
         this.articulo = articulo;
     }
+
     public String getId() {
         return id;
     }

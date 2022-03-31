@@ -14,10 +14,22 @@ public class CompraServiceImpl implements CompraService {
     @Autowired
     private CompraRepository comprarepo;
 
+    @Autowired
+    InventarioServiceImpl invservi;
+
+
     //Guardar una compra
     @Override
-    public Mono<Compra> save(Compra compradto) {
-        return this.comprarepo.save(compradto);
+    public Mono<Compra> save(Compra compradto)  {
+
+            var articulo = compradto.getArticulo();
+            var idArticulo = articulo.getId();
+            var articuloEncontrado = invservi.findById(idArticulo);
+
+            return articuloEncontrado
+                    .flatMap(x -> this.comprarepo.save(compradto))
+                    .switchIfEmpty(Mono.empty());
+
     }
 
     //Obtener las compras

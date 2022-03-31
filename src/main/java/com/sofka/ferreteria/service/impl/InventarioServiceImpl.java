@@ -27,10 +27,10 @@ public class InventarioServiceImpl implements InventarioService {
         return this.invenrepo.findAll();
     }
 
-
-
-
-
+    @Override
+    public Mono<InventarioDTO> findById(String id) {
+        return this.invenrepo.findById(id);
+    }
 
 
 }

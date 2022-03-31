@@ -27,4 +27,10 @@ public class InventarioResource {
     private Flux<InventarioDTO> findAllInventario(){
         return this.inventser.findAll();
     }
+
+    //Obtener inventario por id
+    @GetMapping("/obtenerinventario/{id}")
+    private Mono<InventarioDTO> findAllInventario(@RequestParam("id") String id){
+        return this.inventser.findById(id);
+    }
 }

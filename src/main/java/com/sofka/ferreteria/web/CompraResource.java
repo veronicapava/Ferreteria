@@ -4,6 +4,7 @@ import com.sofka.ferreteria.domain.Compra;
 import com.sofka.ferreteria.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,8 +18,10 @@ public class CompraResource {
     //Postear una compra
     @PostMapping("/crearcompra")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<Compra> save(@RequestBody Compra compradto){
-        return this.compraservice.save(compradto);
+    private  Mono<ResponseEntity<Compra>> save(@RequestBody Compra compradto){
+        return this.compraservice.save(compradto)
+                .flatMap( compra -> Mono.just(ResponseEntity.ok(compra)))
+                .switchIfEmpty(Mono.just(ResponseEntity.badRequest().build()));
     }
 
     //Obtener todas las compas

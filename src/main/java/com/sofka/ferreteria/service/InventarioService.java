@@ -9,4 +9,7 @@ public interface InventarioService {
     Mono<InventarioDTO> save(InventarioDTO inventario);
 
     Flux<InventarioDTO> findAll();
+
+
+    Mono<InventarioDTO> findById(String id);
 }
