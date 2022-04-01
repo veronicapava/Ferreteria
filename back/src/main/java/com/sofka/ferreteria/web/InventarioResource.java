@@ -19,7 +19,7 @@ public class InventarioResource {
     private InventarioService inventser;
 
     //Postear inventario
-    @PostMapping("/crearinventario")
+    @PostMapping("/crear")
     @ResponseStatus(HttpStatus.CREATED)
     private Mono<Inventario> save(@RequestBody Inventario inventario){
         return this.inventser.save(inventario);
@@ -27,20 +27,20 @@ public class InventarioResource {
 
 
     //Obtener inventario
-    @GetMapping("/obtenerinventario")
+    @GetMapping("/lista")
     private Flux<Inventario> findAllInventario(){
         return this.inventser.findAll();
     }
 
     //Obtener articulo de inventario por id
-    @GetMapping("/obtenerinventario/{id}")
+    @GetMapping("/{id}")
     private Mono<Inventario> findAllInventario(@PathVariable("id") String id){
         return this.inventser.findById(id);
     }
 
 
     //Actualizar articulo del inventario
-    @PutMapping("/inventario/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     private Mono<ResponseEntity<Inventario>> updateArticulo(@PathVariable("id") String id, @RequestBody Inventario inventario){
         return this.inventser.update(id, inventario)
                 .flatMap(inv -> Mono.just(ResponseEntity.ok(inv)))
@@ -49,7 +49,7 @@ public class InventarioResource {
     }
 
     //Eliminar articulo del inventario
-    @DeleteMapping("inventario/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     private Mono<ResponseEntity<Inventario>> deleteArticulo(@PathVariable("id") String id){
         return this.inventser.delete(id)
                 .flatMap(clid -> Mono.just(ResponseEntity.ok(clid)))
