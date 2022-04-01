@@ -24,6 +24,9 @@ const Header = () => {
           <li>
             <Link to="/ventas">Ventas</Link>
           </li>
+          <li>
+            <Link to="/historialcompras">Historial de compras</Link>
+          </li>
         </ul>
       </div>
     </div>

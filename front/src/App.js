@@ -6,6 +6,7 @@ import { AuthProvider } from './context/authContext'
 import ProtectedRoute from './components/Molecules/ProtectedRoute'
 import Inventory from './components/Pages/Inventory'
 import Ventas from './components/Pages/Ventas'
+import Shoppinghistory from './components/Pages/Shoppinghistory'
 import Vouchers from './components/Pages/Vouchers'
 import Customers from './components/Pages/entidades/Customers'
 import Providers from './components/Pages/entidades/Providers'
@@ -25,6 +26,7 @@ function App() {
             <Route path="/proovedores" element={<Providers />} />
             <Route path="/ventas" element={<Ventas />} />
             <Route path="/volantes" element={<Vouchers />} />
+            <Route path="/historialcompras" element={<Shoppinghistory />} />
           </Route>
 
 
