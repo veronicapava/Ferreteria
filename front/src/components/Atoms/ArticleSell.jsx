@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import fetchApi from "../../utils/useFetch";
+import { addToCart } from "../../redux/actionCreator";
 
-const ArticleSell = ({ item }) => {
+const ArticleSell = ({ item, addToVenta }) => {
   const [cantidad, setCantidad] = useState(0);
 
   const comprar = async () => {
     let bodycompra = { cantidad, articulo: { id: item.id } };
-    console.log(JSON.stringify(bodycompra, null, 2));
-    await fetchApi(`/transaccion/crearcompra`, "POST", bodycompra);
+    let compraResult = await fetchApi(`/transaccion/crearcompra`, "POST", bodycompra);
+
+    // console.log(compraResult);
+    // addToVenta(compraResult.id);
   };
 
   return (
@@ -21,10 +25,20 @@ const ArticleSell = ({ item }) => {
           <h5>Cantidad en bodega: {item.cantidadEnBodega}</h5>
           {item.cantidadEnBodega < 0 ? <p>Limite minimo</p> : <></>}
         </div>
-        <button onClick={() => comprar()}>Comprar</button>
+        <button onClick={() => comprar(item)}>Comprar</button>
       </article>
     </div>
   );
 };
+
+// const mapStateToProps = (state) => ({
+//   ventas: state.ventas,
+// });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   addToVenta(item) {
+//     dispatch(addToCart(item));
+//   },
+// });
 
 export default ArticleSell;

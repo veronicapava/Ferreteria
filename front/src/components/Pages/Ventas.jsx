@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ArticleSell from "../Atoms/ArticleSell";
 import fetchApi from "../../utils/useFetch";
+import Header from "../Header";
 
 const Ventas = () => {
   const [items, setItems] = useState([]);
@@ -21,8 +22,10 @@ const Ventas = () => {
 
   return (
     <div>
+      <Header />
       <h1>Aqui van los clientes</h1>
       <h3>Artículos para Comprar</h3>
+      <p>Cantidad en carrito:</p>
       <div className="ed-container">
         {items.map((item) => (
           <ArticleSell item={item} key={item.id} />

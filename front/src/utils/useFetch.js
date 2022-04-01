@@ -10,8 +10,6 @@ const fetchApi = async (endpoint, method = undefined, body) => {
                 body: JSON.stringify(body),
             }
             : undefined
-
-        console.log(initRequest)
         const response = await fetch(baseUrl + endpoint, initRequest);
         return await response.json();
     } catch (error) {
