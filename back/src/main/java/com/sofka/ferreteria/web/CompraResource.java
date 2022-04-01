@@ -1,5 +1,6 @@
 package com.sofka.ferreteria.web;
 
+import com.sofka.ferreteria.domain.Cliente;
 import com.sofka.ferreteria.domain.Compra;
 import com.sofka.ferreteria.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,19 @@ public class CompraResource {
     @GetMapping("/obtenercompras")
     private Flux<Compra> findAllCompras(){
         return this.compraservice.findAll();
+    }
+
+    //Actualizar compra
+    @PutMapping("/actualizar/{id}")
+    private Mono<Compra> updateCliente(@PathVariable("id") String id, @RequestBody Compra compra){
+        return this.compraservice.update(id, compra)
+                .flatMap(comp -> {return Mono.just(comp);});
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    private Mono<ResponseEntity<Compra>> deleteCliente(@PathVariable("id") String id){
+        return this.compraservice.delete(id)
+                .flatMap(compra -> Mono.just(ResponseEntity.ok(compra)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 }

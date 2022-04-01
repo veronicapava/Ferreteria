@@ -11,4 +11,10 @@ public interface CompraService {
     Flux<Compra> findAll();
 
     Mono<Compra> findById(String id);
+
+    Mono<Compra> delete(String id);
+
+
+    Mono<Compra> update(String id, Compra compra);
+
 }

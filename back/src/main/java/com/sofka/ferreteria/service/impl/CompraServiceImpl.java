@@ -1,5 +1,6 @@
 package com.sofka.ferreteria.service.impl;
 
+import com.sofka.ferreteria.domain.Cliente;
 import com.sofka.ferreteria.domain.Compra;
 import com.sofka.ferreteria.domain.Inventario;
 import com.sofka.ferreteria.repository.CompraRepository;
@@ -29,13 +30,9 @@ public class CompraServiceImpl implements CompraService {
 
             return articuloEncontrado
                     .flatMap(x -> {
-                        x.setCantidadEnBodega(9998);
-                        System.out.println("Guardando");
-
                         return this.comprarepo.save(compradto);
                     })
                     .switchIfEmpty(Mono.empty());
-
     }
 
     //Obtener las compras
@@ -48,5 +45,23 @@ public class CompraServiceImpl implements CompraService {
     @Override
     public Mono<Compra> findById(String id) {
         return this.comprarepo.findById(id);
+    }
+
+    @Override
+    public Mono<Compra> update(String id, Compra compra){
+        return this.comprarepo.findById(id)
+                .flatMap(comp -> {
+                    compra.setId(id);
+                    return save(compra);
+                }).switchIfEmpty(Mono.empty());
+    }
+
+
+    //Delete compra
+    @Override
+    public Mono<Compra> delete(String id) {
+        return this.comprarepo
+                .findById(id)
+                .flatMap(c -> this.comprarepo.deleteById(c.getId()).thenReturn(c));
     }
 }
