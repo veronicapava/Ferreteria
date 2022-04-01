@@ -1,8 +1,18 @@
-const fetchApi = async (endpoint, options = undefined) => {
+const fetchApi = async (endpoint, method = undefined, body) => {
     const baseUrl = process.env.REACT_APP_API_URL
 
     try {
-        const response = await fetch(baseUrl + endpoint, options);
+        let initRequest = method ?
+            {
+                method, // *GET, POST, PUT, DELETE, etc.
+                headers: { "Content-Type": "application/json" },
+                referrerPolicy: "origin-when-cross-origin",
+                body: JSON.stringify(body),
+            }
+            : undefined
+
+        console.log(initRequest)
+        const response = await fetch(baseUrl + endpoint, initRequest);
         return await response.json();
     } catch (error) {
         console.error(error)

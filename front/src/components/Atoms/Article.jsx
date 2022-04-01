@@ -7,16 +7,7 @@ const Article = ({ item }) => {
   const [temporal, setTemporal] = useState({});
 
   const guardar = async () => {
-    let initRequest = {
-      method: "PUT", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      referrerPolicy: "origin-when-cross-origin",
-      body: JSON.stringify(temporal),
-    };
-
-    await fetchApi(`/inventario/actualizar/${item.id}`, initRequest);
+    await fetchApi(`/inventario/actualizar/${item.id}`, "PUT", temporal);
     console.log(temporal);
     setEditando(false);
     item = { ...temporal, id: item.id };

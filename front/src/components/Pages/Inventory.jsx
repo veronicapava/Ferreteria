@@ -3,6 +3,7 @@ import fetchApi from "../../utils/useFetch";
 import Article from "../Atoms/Article";
 
 const Inventory = () => {
+  //TODO: añadir nuevo articulo
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetching() {
