@@ -24,4 +24,21 @@ public class ProovedoresServiceImpl implements ProovedoresService {
         return this.proovrepo.findAll();
     }
 
+    @Override
+    public Mono<Proovedores> update(String id, Proovedores proovedor){
+        return this.proovrepo.findById(id)
+                .flatMap(cli -> {
+                    proovedor.setId(id);
+                    return save(proovedor);
+                }).switchIfEmpty(Mono.empty());
+    }
+
+
+    @Override
+    public Mono<Proovedores> delete(String id) {
+        return this.proovrepo
+                .findById(id)
+                .flatMap(c -> this.proovrepo.deleteById(c.getId()).thenReturn(c));
+    }
+
 }

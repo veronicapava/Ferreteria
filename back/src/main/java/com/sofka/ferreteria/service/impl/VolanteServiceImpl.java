@@ -23,4 +23,20 @@ public class VolanteServiceImpl implements VolanteService {
     public Flux<Volante> findAll() {
         return this.volanterepo.findAll();
     }
+
+    @Override
+    public Mono<Volante> update(String id, Volante volante){
+        return this.volanterepo.findById(id)
+                .flatMap(cli -> {
+                    volante.setId(id);
+                    return save(volante);
+                }).switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Mono<Volante> delete(String id) {
+        return this.volanterepo
+                .findById(id)
+                .flatMap(c -> this.volanterepo.deleteById(c.getId()).thenReturn(c));
+    }
 }
