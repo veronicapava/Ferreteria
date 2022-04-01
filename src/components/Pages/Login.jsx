@@ -4,13 +4,22 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
   const handleChange = ({ target: { name, value } }) => {
     //Actualizando los estados
     setUser({ ...user, [name]: value });
+  };
+
+  const handleGoogleSignin = async () => {
+    try {
+      await loginWithGoogle();
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -37,6 +46,7 @@ const Login = () => {
         <button>Login</button>
       </form>
       {error && <p>{error}</p>}
+      <button onClick={handleGoogleSignin}>Login With Google Account</button>
     </>
   );
 };

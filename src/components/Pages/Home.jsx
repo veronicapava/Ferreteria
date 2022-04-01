@@ -5,8 +5,14 @@ const Home = () => {
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
 
+  console.log(user);
+
   const handleLogout = async () => {
-    await logout();
+    try {
+      await logout();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   if (loading) {
@@ -15,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Hello {user.email}</h1>
+      <h1>Hello {user.displayName || user.email}</h1>
       <button onClick={handleLogout}>Logout</button>
     </>
   );
