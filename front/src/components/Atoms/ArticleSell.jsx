@@ -3,15 +3,13 @@ import { connect } from "react-redux";
 import fetchApi from "../../utils/useFetch";
 import { addToCart } from "../../redux/actionCreator";
 
-const ArticleSell = ({ item, addToVenta }) => {
+const ArticleSell = ({ item, cart, addVentaToCart }) => {
   const [cantidad, setCantidad] = useState(0);
 
   const comprar = async () => {
     let bodycompra = { cantidad, articulo: { id: item.id } };
     let compraResult = await fetchApi(`/transaccion/crearcompra`, "POST", bodycompra);
-
-    // console.log(compraResult);
-    // addToVenta(compraResult.id);
+    addVentaToCart(compraResult.id);
   };
 
   return (
@@ -31,14 +29,14 @@ const ArticleSell = ({ item, addToVenta }) => {
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   ventas: state.ventas,
-// });
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
 
-// const mapDispatchToProps = (dispatch) => ({
-//   addToVenta(item) {
-//     dispatch(addToCart(item));
-//   },
-// });
+const mapDispatchToProps = (dispatch) => ({
+  addVentaToCart(item) {
+    dispatch(addToCart(item));
+  },
+});
 
-export default ArticleSell;
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleSell);

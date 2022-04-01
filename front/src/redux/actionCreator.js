@@ -1,13 +1,13 @@
-import { ADD_VENTA, DELETE_VENTA } from './action'
+import { ADD_TO_CART, DELETE_FROM_CART } from './action'
 
-const addToCart = venta => ({
-    type: ADD_VENTA,
-    venta
+const addToCart = id => ({
+    type: ADD_TO_CART,
+    id
 })
 
-const deleteFromCart = venta => ({
-    type: DELETE_VENTA,
-    venta
+const deleteFromCart = id => ({
+    type: DELETE_FROM_CART,
+    id
 })
 
 export { addToCart, deleteFromCart }

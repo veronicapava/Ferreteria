@@ -1,19 +1,29 @@
-import { ADD_VENTA, DELETE_VENTA } from './action'
+import { ADD_TO_CART, DELETE_FROM_CART } from './action'
 import { createStore } from 'redux'
 
 const initialStore = {
-    ventas: []
+    cart: []
 }
 
-const rootReducer = (state = initialStore, { type, nuevaVenta }) => {
-    if (type === ADD_VENTA) {
-        let newArt = [...state.ventas, nuevaVenta]
+const rootReducer = (state = initialStore, { type, id }) => {
+    if (type === ADD_TO_CART) {
 
         return {
             ...state,
-            ventas: newArt
+            cart: state.cart.concat(id)
         }
     }
+
+    if (type === DELETE_FROM_CART) {
+        return {
+            ...state,
+            cart: state.cart.filter(c => c !== id)
+        }
+    }
+
+    return state
+
+
 }
 
 export default createStore(rootReducer)

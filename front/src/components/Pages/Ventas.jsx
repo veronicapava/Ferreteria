@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ArticleSell from "../Atoms/ArticleSell";
 import fetchApi from "../../utils/useFetch";
 import Header from "../Header";
+import CartCounter from "../Atoms/CartCounter";
 
 const Ventas = () => {
   const [items, setItems] = useState([]);
@@ -18,7 +19,9 @@ const Ventas = () => {
   return (
     <div>
       <Header />
+
       <h1>Aqui van los clientes</h1>
+      <CartCounter />
       <h3>Artículos disponibles para compra</h3>
 
       <div className="ed-container">
@@ -26,7 +29,7 @@ const Ventas = () => {
           <ArticleSell item={item} key={item.id} />
         ))}
       </div>
-      <p>Cantidad en carrito:</p>
+
       <button>Generar factura</button>
     </div>
   );
