@@ -8,7 +8,7 @@ import Inventory from './components/Pages/Inventory'
 import Ventas from './components/Pages/Ventas'
 import Volantes from './components/Pages/Volantes'
 import Customers from './components/Pages/entidades/Customers'
-import Proovedores from './components/Pages/entidades/Proovedores'
+import Providers from './components/Pages/entidades/Providers'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
@@ -22,7 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/inventario" element={<Inventory />} />
             <Route path="/clientes" element={<Customers />} />
-            <Route path="/proovedores" element={<Proovedores />} />
+            <Route path="/proovedores" element={<Providers />} />
             <Route path="/ventas" element={<Ventas />} />
             <Route path="/volantes" element={<Volantes />} />
           </Route>
