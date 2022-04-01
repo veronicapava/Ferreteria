@@ -3,12 +3,16 @@ import Home from './components/Pages/Home'
 import Login from './components/Pages/Login'
 import Register from './components/Pages/Register'
 import { AuthProvider } from './context/authContext'
+import ProtectedRoute from './components/Molecules/ProtectedRoute'
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<ProtectedRoute />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
