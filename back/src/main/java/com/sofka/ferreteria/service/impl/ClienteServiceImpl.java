@@ -39,8 +39,6 @@ public class ClienteServiceImpl implements ClienteService {
         return this.clienterepo.findById(id)
                 .flatMap(cli -> {
                     cliente.setId(id);
-                    cliente.setNombreCliente(cli.getNombreCliente());
-                    cliente.setNumeroTelefono(cli.getNumeroTelefono());
                     return save(cliente);
                 }).switchIfEmpty(Mono.empty());
     }

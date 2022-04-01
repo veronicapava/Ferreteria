@@ -40,16 +40,14 @@ public class ClienteResource {
     }
 
     //Actualizar cliente
-    @PutMapping("/cliente/actualizar/{id}")
-    private Mono<ResponseEntity<Cliente>> updateCliente(@PathVariable("id") String id, @RequestBody Cliente cliente){
+    @PutMapping("/actualizar/{id}")
+    private Mono<Cliente> updateCliente(@PathVariable("id") String id, @RequestBody Cliente cliente){
         return this.clienteserv.update(id, cliente)
-                .flatMap(cli -> Mono.just(ResponseEntity.ok(cli)))
-                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
-
+                .flatMap(cli -> {return Mono.just(cli);});
     }
 
     //Eliminar clientes
-    @DeleteMapping("cliente/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     private Mono<ResponseEntity<Cliente>> deleteCliente(@PathVariable("id") String id){
         return this.clienteserv.delete(id)
                 .flatMap(clid -> Mono.just(ResponseEntity.ok(clid)))
