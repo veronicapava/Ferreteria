@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import fetchApi from "../../utils/useFetch";
 import Article from "../Atoms/Article";
+import Header from "../Header";
 
 const Inventory = () => {
   //TODO: añadir nuevo articulo
@@ -16,6 +17,7 @@ const Inventory = () => {
 
   return (
     <div>
+      <Header />
       <h1>Inventario</h1>
       <h1>Articulos en inventario</h1>
       <div className="ed-container">
