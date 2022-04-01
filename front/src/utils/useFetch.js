@@ -1,8 +1,8 @@
-const fetchApi = async (endpoint) => {
-
+const fetchApi = async (endpoint, options = undefined) => {
     const baseUrl = process.env.REACT_APP_API_URL
+
     try {
-        const response = await fetch(baseUrl + endpoint);
+        const response = await fetch(baseUrl + endpoint, options);
         return await response.json();
     } catch (error) {
         console.error(error)
