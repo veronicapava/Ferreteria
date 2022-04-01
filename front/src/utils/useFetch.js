@@ -1,4 +1,4 @@
-const fetchApi = async (endpoint, method = undefined, body) => {
+const fetchApi = async (endpoint, method = undefined, body = undefined) => {
     const baseUrl = process.env.REACT_APP_API_URL
 
     try {
@@ -7,7 +7,7 @@ const fetchApi = async (endpoint, method = undefined, body) => {
                 method, // *GET, POST, PUT, DELETE, etc.
                 headers: { "Content-Type": "application/json" },
                 referrerPolicy: "origin-when-cross-origin",
-                body: JSON.stringify(body),
+                body: body ? JSON.stringify(body) : {},
             }
             : undefined
         const response = await fetch(baseUrl + endpoint, initRequest);

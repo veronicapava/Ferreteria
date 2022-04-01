@@ -11,6 +11,6 @@ const mapStateToProps = (state) => ({
   cartLength: state.cart,
 });
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartCounter);

@@ -1,16 +1,31 @@
-import { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import fetchApi from "../../utils/useFetch";
-import { addToCart } from "../../redux/actionCreator";
+import { useState, useEffect } from "react"
+import { connect } from "react-redux"
+import fetchApi from "../../utils/useFetch"
+import { addToCart, deleteFromCart } from "../../redux/actionCreator"
 
-const ArticleSell = ({ item, cart, addVentaToCart }) => {
-  const [cantidad, setCantidad] = useState(0);
+const ArticleSell = ({ item, cart, addVentaToCart, deleteVentaFromCart }) => {
+  const [cantidad, setCantidad] = useState(0)
+  const [compra, setCompra] = useState({})
 
   const comprar = async () => {
-    let bodycompra = { cantidad, articulo: { id: item.id } };
-    let compraResult = await fetchApi(`/transaccion/crearcompra`, "POST", bodycompra);
-    addVentaToCart(compraResult.id);
-  };
+    let bodycompra = { cantidad, articulo: { id: item.id } }
+    let compraResult = await fetchApi(`/transaccion/crearcompra`, "POST", bodycompra)
+    addVentaToCart(compraResult.id)
+    setCompra(compraResult)
+  }
+
+  const eliminarCompra = async () => {
+    let compraResult = await fetchApi(`/transaccion/eliminar/${compra.id}`, "DELETE")
+    deleteVentaFromCart(compraResult.id)
+    setCantidad("")
+    setCompra({})
+  }
+
+  const actualizarCompra = async () => {
+    let compraActualizada = { ...compra, cantidad }
+    setCompra(compraActualizada)
+    await fetchApi(`/transaccion/actualizar/${compra.id}`, "PUT", compraActualizada)
+  }
 
   return (
     <div>
@@ -23,20 +38,32 @@ const ArticleSell = ({ item, cart, addVentaToCart }) => {
           <h5>Cantidad en bodega: {item.cantidadEnBodega}</h5>
           {item.cantidadEnBodega < 0 ? <p>Limite minimo</p> : <></>}
         </div>
-        <button onClick={() => comprar(item)}>Comprar</button>
+        {!compra.id ? <button onClick={() => comprar(item)}>Comprar</button> : <></>}
+        {compra.id ? (
+          <>
+            <button onClick={() => eliminarCompra()}>Eliminar</button>
+            <button onClick={() => actualizarCompra()}>Actualizar</button>
+            <h5>✅</h5>
+          </>
+        ) : (
+          <></>
+        )}
       </article>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
-});
+})
 
 const mapDispatchToProps = (dispatch) => ({
   addVentaToCart(item) {
-    dispatch(addToCart(item));
+    dispatch(addToCart(item))
   },
-});
+  deleteVentaFromCart(item) {
+    dispatch(deleteFromCart(item))
+  },
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleSell);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleSell)
