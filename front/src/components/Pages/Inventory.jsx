@@ -14,16 +14,16 @@ const Inventory = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <h1>Inventario</h1>
       <h1>Articulos en inventario</h1>
-      <ul>
+      <div className="ed-container">
         {items.map((item) => (
           <Article item={item} key={item.id} />
         ))}
-      </ul>
+      </div>
       <button>Mostrar inventario</button>
-    </>
+    </div>
   );
 };
 
