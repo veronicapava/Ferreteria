@@ -6,7 +6,7 @@ const Inventory = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetching() {
-      let data = await fetchApi("/inventario/obtenerinventario");
+      let data = await fetchApi("/inventario/lista");
       console.log(data);
       setItems(data);
     }
