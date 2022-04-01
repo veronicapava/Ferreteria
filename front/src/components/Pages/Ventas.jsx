@@ -27,6 +27,7 @@ const Ventas = () => {
         ))}
       </div>
       <p>Cantidad en carrito:</p>
+      <button>Generar factura</button>
     </div>
   );
 };

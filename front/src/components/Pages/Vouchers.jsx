@@ -14,7 +14,7 @@ const Vouchers = () => {
     fetching();
   }, []);
   return (
-    <div>
+    <div className="container">
       <Header />
       <h3>Volantes</h3>
       <div className="ed-container">
