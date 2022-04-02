@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import fetchApi from "../../utils/useFetch";
-import Article from "../Atoms/Article";
-import Header from "../Header";
+import { useEffect, useState } from "react"
+import fetchApi from "../../utils/useFetch"
+import Article from "../Atoms/Article"
+import Header from "../Header"
 
 const Inventory = () => {
   //TODO: añadir nuevo articulo
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([])
   useEffect(() => {
     async function fetching() {
-      let data = await fetchApi("/inventario/lista");
-      console.log(data);
-      setItems(data);
+      let data = await fetchApi("/inventario/lista")
+      console.log(data)
+      setItems(data)
     }
-    fetching();
-  }, []);
+    fetching()
+  }, [])
 
   return (
-    <div>
+    <div className="container mt-5">
       <Header />
       <h1>Inventario</h1>
       <h1>Articulos en inventario</h1>
@@ -25,9 +25,8 @@ const Inventory = () => {
           <Article item={item} key={item.id} />
         ))}
       </div>
-      <button>Mostrar inventario</button>
     </div>
-  );
-};
+  )
+}
 
-export default Inventory;
+export default Inventory
