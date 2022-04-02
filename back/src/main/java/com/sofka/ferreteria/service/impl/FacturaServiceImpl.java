@@ -26,4 +26,9 @@ public class FacturaServiceImpl implements FacturaService {
     public Flux<Factura> findAll() {
         return this.facturepo.findAll();
     }
+
+    @Override
+    public Mono<Factura> findById(String id) {
+        return this.facturepo.findById(id);
+    }
 }

@@ -8,4 +8,6 @@ public interface FacturaService {
     Mono<Factura> save(Factura facturadto);
 
     Flux<Factura> findAll();
+
+    Mono<Factura> findById(String id);
 }

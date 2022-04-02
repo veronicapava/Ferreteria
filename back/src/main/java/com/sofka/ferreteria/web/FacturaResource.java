@@ -1,6 +1,7 @@
 package com.sofka.ferreteria.web;
 
 import com.sofka.ferreteria.domain.Factura;
+import com.sofka.ferreteria.domain.Inventario;
 import com.sofka.ferreteria.service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class FacturaResource {
     private FacturaService factuserv;
 
     //Postear una factura
-    @PostMapping("/facturas")
+    @PostMapping("/crear")
     @ResponseStatus(HttpStatus.CREATED)
     private Mono<Factura> save(@RequestBody Factura factudto){
          return this.factuserv.save(factudto);
@@ -25,9 +26,13 @@ public class FacturaResource {
 
 
     //Obtener todas las facturas
-    @GetMapping("/facturas")
+    @GetMapping("/lista")
     private Flux<Factura> findAllFacturas(){
         return this.factuserv.findAll();
     }
 
+    @GetMapping("/lista/{id}")
+    private Mono<Factura> findFacturaID(@PathVariable("id") String id){
+        return this.factuserv.findById(id);
+    }
 }
