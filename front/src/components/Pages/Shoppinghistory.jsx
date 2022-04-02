@@ -1,21 +1,20 @@
-import { useState, useEffect } from "react";
-import Header from "../Header";
-import fetchApi from "../../utils/useFetch";
+import { useState, useEffect } from "react"
+import Header from "../Header"
+import fetchApi from "../../utils/useFetch"
 
 const Shoppinghistory = () => {
-  const [compras, setCompras] = useState([]);
-  console.log(compras);
+  const [compras, setCompras] = useState([])
 
   useEffect(() => {
     async function fetchingVentas() {
-      let compras = await fetchApi("/transaccion/obtenercompras");
-      setCompras(compras);
+      let compras = await fetchApi("/transaccion/obtenercompras")
+      setCompras(compras)
     }
-    fetchingVentas();
-  }, []);
+    fetchingVentas()
+  }, [])
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <Header />
       <h3>Shopping history</h3>
       <div>
@@ -39,7 +38,7 @@ const Shoppinghistory = () => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Shoppinghistory;
+export default Shoppinghistory

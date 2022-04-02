@@ -20,7 +20,6 @@ const Inventory = () => {
   const crearArticle = async () => {
     let request = await fetchApi(`/inventario/crear`, "POST", nuevoProd)
     let newProductData = await fetchApi(`/inventario/${request.id}`)
-    console.log(request)
     setItems([...items, newProductData])
     setCreando(false)
   }
