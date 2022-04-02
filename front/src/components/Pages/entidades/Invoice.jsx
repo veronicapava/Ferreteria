@@ -2,16 +2,45 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import fetchApi from "../../../utils/useFetch"
+import jsPDF from "jspdf"
+import "jspdf-autotable"
 
 const Invoice = ({ cart }) => {
   const [factura, setFactura] = useState([])
   const [error, setError] = useState(false)
 
+  const exportPDF = () => {
+    const unit = "pt"
+    const size = "A4"
+    const orientation = "portrait"
+    const marginLeft = 40
+    const doc = new jsPDF(orientation, unit, size)
+    doc.setFontSize(15)
+
+    const title = `Factura ${factura.id}`
+    const headers = [["Articulo", "Cantidad", "Precio", "Subtotal"]]
+
+    let data = factura.productosComprados.map((proc) => [
+      proc.articulo.nombreProducto,
+      proc.cantidad,
+      proc.articulo.precioUnd,
+      proc.articulo.precioUnd * proc.cantidad,
+    ])
+
+    let content = {
+      startY: 50,
+      head: headers,
+      body: data,
+    }
+
+    doc.text(title, marginLeft, 40)
+    doc.autoTable(content)
+    doc.save("factura.pdf")
+  }
+
   useEffect(() => {
     async function fetching() {
-      console.log("~ cart", cart)
       if (!cart.length) {
-        console.log("Entra al error")
         return setError(true)
       }
 
@@ -20,13 +49,12 @@ const Invoice = ({ cart }) => {
         cliente: {
           id: "f55",
         },
-        nombreVendedor: "elpato",
+        nombreVendedor: "Ana",
         productosComprados: cart.map((id) => ({ id })),
       }
 
       let facturaCreada = await fetchApi("/facturas/crear", "POST", body)
       let datosFactura = await fetchApi(`/facturas/lista/${facturaCreada.id}`)
-      console.log(datosFactura)
       setFactura(datosFactura)
     }
     fetching()
@@ -47,10 +75,10 @@ const Invoice = ({ cart }) => {
       <h1>Factura</h1>
       <h2>Factura: {factura.id}</h2>
       <h2>Fecha: {factura.fecha}</h2>
-      {/* <h2>Cliente: {factura.cliente.id}</h2>
+      <h2>Cliente: {factura.cliente.id}</h2>
       <h2>Cliente nombre: {factura.cliente.nombreCliente}</h2>
       <h2>Nombre vendedor: {factura.nombreVendedor}</h2>
-      <h2>Cliente telefono: {factura.cliente.numeroTelefono}</h2> */}
+      <h2>Cliente telefono: {factura.cliente.numeroTelefono}</h2>
       <h2>Productos comprados: </h2>
       <table className="table table-hover table-dark">
         <thead>
@@ -76,6 +104,10 @@ const Invoice = ({ cart }) => {
         Total:
         {factura.productosComprados.reduce((acc, proc) => acc + proc.articulo.precioUnd * proc.cantidad, 0)}
       </p>
+
+      <div>
+        <button onClick={() => exportPDF()}>Generar PDF</button>
+      </div>
     </div>
   )
 }
