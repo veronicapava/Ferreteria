@@ -3,6 +3,7 @@ import ArticleSell from "../Atoms/ArticleSell";
 import fetchApi from "../../utils/useFetch";
 import Header from "../Header";
 import CartCounter from "../Atoms/CartCounter";
+import { Link } from "react-router-dom";
 
 const Ventas = () => {
   const [items, setItems] = useState([]);
@@ -30,7 +31,9 @@ const Ventas = () => {
         ))}
       </div>
 
-      <button>Generar factura</button>
+      <Link to="/factura">
+        <button>Generar factura</button>
+      </Link>
     </div>
   );
 };

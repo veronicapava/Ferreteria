@@ -12,6 +12,7 @@ import Customers from './components/Pages/entidades/Customers'
 import Providers from './components/Pages/entidades/Providers'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import Invoice from './components/Pages/entidades/Invoice'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/ventas" element={<Ventas />} />
             <Route path="/volantes" element={<Vouchers />} />
             <Route path="/historialcompras" element={<Shoppinghistory />} />
+            <Route path="/factura" element={<Invoice />} />
           </Route>
 
 
