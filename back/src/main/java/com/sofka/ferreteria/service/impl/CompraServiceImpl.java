@@ -1,6 +1,5 @@
 package com.sofka.ferreteria.service.impl;
 
-import com.sofka.ferreteria.domain.Cliente;
 import com.sofka.ferreteria.domain.Compra;
 import com.sofka.ferreteria.domain.Inventario;
 import com.sofka.ferreteria.repository.CompraRepository;

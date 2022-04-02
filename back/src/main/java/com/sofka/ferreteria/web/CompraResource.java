@@ -1,6 +1,5 @@
 package com.sofka.ferreteria.web;
 
-import com.sofka.ferreteria.domain.Cliente;
 import com.sofka.ferreteria.domain.Compra;
 import com.sofka.ferreteria.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.sofka.ferreteria.repository;
 
-import com.sofka.ferreteria.domain.Cliente;
 import com.sofka.ferreteria.domain.Inventario;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;

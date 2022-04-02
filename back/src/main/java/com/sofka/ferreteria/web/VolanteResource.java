@@ -1,6 +1,5 @@
 package com.sofka.ferreteria.web;
 
-import com.sofka.ferreteria.domain.Proovedores;
 import com.sofka.ferreteria.domain.Volante;
 import com.sofka.ferreteria.service.VolanteService;
 import org.springframework.beans.factory.annotation.Autowired;
