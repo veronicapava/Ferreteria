@@ -1,22 +1,23 @@
-import { useState } from "react";
-import fetchApi from "../../utils/useFetch";
+import { useState } from "react"
+import fetchApi from "../../utils/useFetch"
 
 const Article = ({ item }) => {
-  //TODO: falta renderizar cuando se guarde
-  const [editando, setEditando] = useState(false);
-  const [temporal, setTemporal] = useState({});
+  const [editando, setEditando] = useState(false)
+  const [temporal, setTemporal] = useState({})
 
   const guardar = async () => {
-    await fetchApi(`/inventario/actualizar/${item.id}`, "PUT", temporal);
-    console.log(temporal);
-    setEditando(false);
-    item = { ...temporal, id: item.id };
-  };
+    await fetchApi(`/inventario/actualizar/${item.id}`, "PUT", temporal)
+    setEditando(false)
+    item = { ...temporal, id: item.id }
+  }
+  const borrarItem = async () => {
+    await fetchApi(`/inventario/eliminar/${item.id}`, "DELETE")
+    item = {}
+  }
   const cancelar = () => {
-    console.log(temporal);
-    setEditando(false);
-    setTemporal({});
-  };
+    setEditando(false)
+    setTemporal({})
+  }
 
   return (
     <>
@@ -30,6 +31,7 @@ const Article = ({ item }) => {
             <h5>Cantidad mínima: {item.cantidadMin}</h5>
           </div>
           <button onClick={() => setEditando(true)}>Editar</button>
+          <button onClick={() => borrarItem()}>Eliminar</button>
         </article>
       ) : (
         <article className="s-shadow-bottom">
@@ -79,7 +81,7 @@ const Article = ({ item }) => {
         </article>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Article;
+export default Article
