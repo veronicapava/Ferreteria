@@ -17,9 +17,10 @@ const Invoice = ({ cart }) => {
     const doc = new jsPDF(orientation, unit, size)
     doc.setFontSize(15)
 
-    const title = `Factura ${factura.id}`
+    const title = `Factura #${factura.id}        Cliente: ${factura.cliente.nombreCliente}  Tel:${factura.cliente.numeroTelefono}        ${factura.fecha} `
     const headers = [["Articulo", "Cantidad", "Precio", "Subtotal"]]
 
+    let total = factura.productosComprados.reduce((acc, proc) => acc + proc.articulo.precioUnd * proc.cantidad, 0)
     let data = factura.productosComprados.map((proc) => [
       proc.articulo.nombreProducto,
       proc.cantidad,
@@ -28,13 +29,15 @@ const Invoice = ({ cart }) => {
     ])
 
     let content = {
-      startY: 50,
+      startY: 100,
       head: headers,
       body: data,
     }
 
     doc.text(title, marginLeft, 40)
+    doc.text(`Vendedor: ${factura.nombreVendedor}`, 40, 70)
     doc.autoTable(content)
+    doc.text(`Total: ${total}`, 300, 800)
     doc.save("factura.pdf")
   }
 
