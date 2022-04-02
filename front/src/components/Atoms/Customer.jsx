@@ -1,35 +1,42 @@
-import { useState } from "react";
-import fetchApi from "../../utils/useFetch";
+import { useState } from "react"
+import fetchApi from "../../utils/useFetch"
 
 const Customer = ({ customer }) => {
-  const [editando, setEditando] = useState(false);
-  const [temporal, setTemporal] = useState({});
+  const [editando, setEditando] = useState(false)
+  const [temporal, setTemporal] = useState({})
 
   const guardar = async () => {
-    await fetchApi(`/clientes/actualizar/${customer.id}`, "PUT", temporal);
-    console.log(temporal);
-    setEditando(false);
-    customer = { ...temporal, id: customer.id };
-  };
+    await fetchApi(`/clientes/actualizar/${customer.id}`, "PUT", temporal)
+    console.log(temporal)
+    setEditando(false)
+    customer = { ...temporal, id: customer.id }
+  }
   const cancelar = () => {
-    console.log(temporal);
-    setEditando(false);
-    setTemporal({});
-  };
+    console.log(temporal)
+    setEditando(false)
+    setTemporal({})
+  }
 
   return (
     <div>
       {!editando ? (
-        <article className="s-shadow-bottom">
-          <div className="s-bg-black s-pxy-2">
-            <h5>Id: {customer.id}</h5>
-            <h5>Nombre cliente: {customer.nombreCliente}</h5>
-            <h5>Numero de telefono: {customer.numeroTelefono}</h5>
-          </div>
-          <button onClick={() => setEditando(true)}>Editar</button>
-        </article>
+        <div className="container">
+          <table className="table table-hover table-ligth">
+            <thead>
+              <tr>
+                <h5>Id: {customer.id}</h5>
+                <h5>Nombre cliente: {customer.nombreCliente}</h5>
+                <h5>Numero de telefono: {customer.numeroTelefono}</h5>
+              </tr>
+            </thead>
+          </table>
+
+          <button className="btn btn-outline-secondary" onClick={() => setEditando(true)}>
+            Editar
+          </button>
+        </div>
       ) : (
-        <article className="s-shadow-bottom">
+        <article>
           <div className="s-bg-black s-pxy-2">
             <input
               type="text"
@@ -47,12 +54,16 @@ const Customer = ({ customer }) => {
             />
             <h5>Numero de telefono: {customer.numeroTelefono}</h5>
           </div>
-          <button onClick={() => cancelar()}>Cancelar</button>
-          <button onClick={() => guardar()}>Guardar</button>
+          <button className="btn btn-outline-secondary" onClick={() => cancelar()}>
+            Cancelar
+          </button>
+          <button className="btn btn-outline-secondary" onClick={() => guardar()}>
+            Guardar
+          </button>
         </article>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Customer;
+export default Customer

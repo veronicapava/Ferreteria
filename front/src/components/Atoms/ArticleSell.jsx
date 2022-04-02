@@ -28,27 +28,38 @@ const ArticleSell = ({ item, cart, addVentaToCart, deleteVentaFromCart }) => {
   }
 
   return (
-    <div>
-      <article className="s-shadow-bottom">
-        <div className="s-bg-black s-pxy-2">
-          <h5>Cantidad a comprar: </h5>
-          <input type="number" placeholder="Cantidad a comprar" onChange={(e) => setCantidad(Number(e.target.value))} />
-          <h5>Producto: {item.nombreProducto}</h5>
-          <h5>Precio unidad: COP {item.precioUnd}</h5>
-          <h5>Cantidad en bodega: {item.cantidadEnBodega}</h5>
-          {item.cantidadEnBodega < 0 ? <p>Limite minimo</p> : <></>}
-        </div>
-        {!compra.id ? <button onClick={() => comprar(item)}>Comprar</button> : <></>}
-        {compra.id ? (
-          <>
-            <button onClick={() => eliminarCompra()}>Eliminar</button>
-            <button onClick={() => actualizarCompra()}>Actualizar</button>
-            <h5>✅</h5>
-          </>
+    <div className="row">
+      <div className="card border-success mb-3" style={{ width: "20rem", display: "flex" }}>
+        <h5 className="card-header">
+          <b>Producto: {item.nombreProducto}</b>
+        </h5>
+        <h5>Cantidad a comprar: </h5>
+        <input type="number" placeholder="Cantidad a comprar" onChange={(e) => setCantidad(Number(e.target.value))} />
+        <h5>Precio unidad: COP {item.precioUnd}</h5>
+        <h5>Cantidad en bodega: {item.cantidadEnBodega}</h5>
+        {item.cantidadEnBodega < 0 ? <p>Limite minimo</p> : <></>}
+
+        {!compra.id ? (
+          <button className="btn btn-outline-dark btn-sm" onClick={() => comprar(item)}>
+            Comprar
+          </button>
         ) : (
           <></>
         )}
-      </article>
+      </div>
+      {compra.id ? (
+        <>
+          <button className="btn btn-outline-dark" onClick={() => eliminarCompra()}>
+            Eliminar
+          </button>
+          <button className="btn btn-outline-dark" onClick={() => actualizarCompra()}>
+            Actualizar
+          </button>
+          <h5>✅</h5>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }

@@ -4,32 +4,35 @@ const Voucher = ({ voucher }) => {
       <div className="card border-success mb-3" style={{ width: "20rem", display: "flex" }}>
         <div>
           <div className="card-header">
-            <h4 className="card-title">Info del volante</h4>
+            <h4 className="card-title">Volante #{voucher.id}</h4>
           </div>
           <div className="card-body">
-            <p>Id: {voucher.id}</p>
             <p>Fecha: {voucher.fecha}</p>
 
-            <p>Aqui va la lista de los productos recibidos:</p>
+            <p>
+              <b>Productos recibidos</b>
+            </p>
+
             {voucher.productosRecibidos.map((pro) => (
               <div>
                 {" "}
-                <p key={pro.id}>ID de productos recibidos: {pro.id} </p>
-                <p key={pro.id}>Cantidad de productos recibidos: {pro.cantidad} </p>
-                <p key={pro.id}>Nombre de producto recibidos: {pro.articulo.nombreProducto} </p>
+                <p key={pro.id}>ID: {pro.id} </p>
+                <p key={pro.id}>Cantidad: {pro.cantidad} </p>
+                <p key={pro.id}>Nombre: {pro.articulo.nombreProducto} </p>
               </div>
             ))}
 
-            <p>Esta es la info del proov:</p>
-            <p>Proovedor: {voucher.proovedores.id}</p>
-            <p>Proovedor: {voucher.proovedores.nombreProovedor}</p>
-            <p>Proovedor: {voucher.proovedores.telefonoProovedor}</p>
+            <p>
+              <b>Proovedor</b>
+            </p>
+            <p>ID: {voucher.proovedores.id}</p>
+            <p>Nombre: {voucher.proovedores.nombreProovedor}</p>
+            <p>Telefono: {voucher.proovedores.telefonoProovedor}</p>
           </div>
-          <button>Editar</button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Voucher;
+export default Voucher

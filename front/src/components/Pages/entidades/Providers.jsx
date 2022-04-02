@@ -1,29 +1,32 @@
-import { useState, useEffect } from "react";
-import Header from "../../Header";
-import fetchApi from "../../../utils/useFetch";
-import Provider from "../../Atoms/Provider";
+import { useState, useEffect } from "react"
+import Header from "../../Header"
+import fetchApi from "../../../utils/useFetch"
+import Provider from "../../Atoms/Provider"
 
 const Providers = () => {
-  const [provider, setProvider] = useState([]);
+  const [provider, setProvider] = useState([])
   useEffect(() => {
     async function fetching() {
-      let data = await fetchApi("/proovedores/obtenerproovedores");
-      console.log(data);
-      setProvider(data);
+      let data = await fetchApi("/proovedores/obtenerproovedores")
+      console.log(data)
+      setProvider(data)
     }
-    fetching();
-  }, []);
+    fetching()
+  }, [])
   return (
-    <div>
+    <div className="container mt-5">
       <Header />
-      <h1>Proovedores</h1>
+      <div className="container mt-3 mb-3">
+        <h1>Proveedores</h1>
+      </div>
+
       <div className="ed-container">
         {provider.map((prov) => (
           <Provider provider={prov} key={prov.id} />
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Providers;
+export default Providers

@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
-import Header from "../../Header";
-import fetchApi from "../../../utils/useFetch";
-import Customer from "../../Atoms/Customer";
+import { useEffect, useState } from "react"
+import Header from "../../Header"
+import fetchApi from "../../../utils/useFetch"
+import Customer from "../../Atoms/Customer"
 
 const Customers = () => {
-  const [customer, setCustomer] = useState([]);
+  const [customer, setCustomer] = useState([])
 
   const handleClick = () => {
-    console.log("Crear cliente");
-  };
+    console.log("Crear cliente")
+  }
 
   useEffect(() => {
     async function fetching() {
-      let data = await fetchApi("/clientes/obtenerclientes");
-      setCustomer(data);
+      let data = await fetchApi("/clientes/obtenerclientes")
+      setCustomer(data)
     }
-    fetching();
-  }, []);
+    fetching()
+  }, [])
   return (
-    <div className="container">
+    <div className="container mt-5">
       <Header />
-      <h1>Clientes</h1>
+      <div className="container mt-3 mb-3 ">
+        <h1>Clientes</h1>
+      </div>
+
       <div>
         <table className="table table-hover table-ligth">
-          <thead>
-            <tr>
-              <th>ID Cliente</th>
-              <th>Nombre cliente</th>
-              <th>Numero de telefono</th>
-            </tr>
-          </thead>
           {customer.map((cus) => (
             <tbody>
               <tr className="table-secondary">
@@ -41,9 +37,11 @@ const Customers = () => {
           ))}
         </table>
       </div>
-      <button onClick={() => handleClick()}>Crear cliente</button>
+      <button className="btn btn-outline-secondary" onClick={() => handleClick()}>
+        Crear cliente
+      </button>
     </div>
-  );
-};
+  )
+}
 
-export default Customers;
+export default Customers

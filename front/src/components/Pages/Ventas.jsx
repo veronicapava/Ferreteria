@@ -1,41 +1,40 @@
-import { useState, useEffect } from "react";
-import ArticleSell from "../Atoms/ArticleSell";
-import fetchApi from "../../utils/useFetch";
-import Header from "../Header";
-import CartCounter from "../Atoms/CartCounter";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react"
+import ArticleSell from "../Atoms/ArticleSell"
+import fetchApi from "../../utils/useFetch"
+import Header from "../Header"
+import CartCounter from "../Atoms/CartCounter"
+import { Link } from "react-router-dom"
 
 const Ventas = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([])
 
   useEffect(() => {
     async function fetchingInventario() {
-      let inventario = await fetchApi("/inventario/lista");
-      setItems(inventario);
+      let inventario = await fetchApi("/inventario/lista")
+      setItems(inventario)
     }
 
-    fetchingInventario();
-  }, []);
+    fetchingInventario()
+  }, [])
 
   return (
-    <div>
+    <div className="container mt-5">
       <Header />
-
-      <h1>Aqui van los clientes</h1>
       <CartCounter />
-      <h3>Artículos disponibles para compra</h3>
+      <h3>Artículos disponibles para vender</h3>
 
       <div className="ed-container">
         {items.map((item) => (
           <ArticleSell item={item} key={item.id} />
         ))}
       </div>
-
-      <Link to="/factura">
-        <button>Generar factura</button>
-      </Link>
+      <div className="mt-5">
+        <Link to="/factura">
+          <button className="btn btn-outline-dark">Generar factura</button>
+        </Link>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Ventas;
+export default Ventas

@@ -1,31 +1,33 @@
-import { useState } from "react";
-import fetchApi from "../../utils/useFetch";
+import { useState } from "react"
+import fetchApi from "../../utils/useFetch"
 
 const Provider = ({ provider }) => {
-  const [editando, setEditando] = useState(false);
-  const [temporal, setTemporal] = useState({});
+  const [editando, setEditando] = useState(false)
+  const [temporal, setTemporal] = useState({})
 
   const guardar = async () => {
-    await fetchApi(`/proovedores/actualizar/${provider.id}`, "PUT", temporal);
-    console.log(temporal);
-    setEditando(false);
-    provider = { ...temporal, id: provider.id };
-  };
+    await fetchApi(`/proovedores/actualizar/${provider.id}`, "PUT", temporal)
+    console.log(temporal)
+    setEditando(false)
+    provider = { ...temporal, id: provider.id }
+  }
   const cancelar = () => {
-    console.log(temporal);
-    setEditando(false);
-    setTemporal({});
-  };
+    console.log(temporal)
+    setEditando(false)
+    setTemporal({})
+  }
   return (
     <div>
       {!editando ? (
         <article className="s-shadow-bottom">
           <div className="s-bg-black s-pxy-2">
             <h5>Id: {provider.id}</h5>
-            <h5>Nombre proovedor: {provider.nombreProovedor}</h5>
+            <h5>Nombre proveedor: {provider.nombreProovedor}</h5>
             <h5>Numero de telefono: {provider.telefonoProovedor}</h5>
           </div>
-          <button onClick={() => setEditando(true)}>Editar</button>
+          <button className="btn btn-outline-dark" onClick={() => setEditando(true)}>
+            Editar
+          </button>
         </article>
       ) : (
         <article className="s-shadow-bottom">
@@ -36,7 +38,7 @@ const Provider = ({ provider }) => {
               placeholder="Actualiza el nombre"
               onChange={(e) => setTemporal({ ...temporal, nombreProovedor: e.target.value })}
             />
-            <h5>Nombre proovedor: {provider.nombreProovedor}</h5>
+            <h5>Nombre proveedor: {provider.nombreProovedor}</h5>
 
             <input
               type="text"
@@ -46,12 +48,16 @@ const Provider = ({ provider }) => {
             />
             <h5>Numero de telefono: {provider.telefonoProovedor}</h5>
           </div>
-          <button onClick={() => cancelar()}>Cancelar</button>
-          <button onClick={() => guardar()}>Guardar</button>
+          <button className="btn btn-outline-dark" onClick={() => cancelar()}>
+            Cancelar
+          </button>
+          <button className="btn btn-outline-dark" onClick={() => guardar()}>
+            Guardar
+          </button>
         </article>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Provider;
+export default Provider
