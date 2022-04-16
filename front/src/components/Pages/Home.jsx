@@ -12,7 +12,11 @@ const Home = () => {
   }
 
   if (loading) {
-    return <h4>Loading...</h4>
+    return (
+      <div className="container">
+        <h4 className="mt-5 mb-5">Cargando...</h4>
+      </div>
+    )
   }
 
   return (
