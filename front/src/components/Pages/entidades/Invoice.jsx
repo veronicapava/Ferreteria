@@ -6,7 +6,7 @@ import jsPDF from "jspdf"
 import "jspdf-autotable"
 
 const Invoice = ({ cart }) => {
-  const [factura, setFactura] = useState([])
+  const [factura, setFactura] = useState({})
   const [error, setError] = useState(false)
 
   const exportPDF = () => {
@@ -50,7 +50,7 @@ const Invoice = ({ cart }) => {
       let body = {
         fecha: "2022-03-30",
         cliente: {
-          id: "f55",
+          id: "ebb",
         },
         nombreVendedor: "Ana",
         productosComprados: cart.map((id) => ({ id })),
@@ -58,6 +58,8 @@ const Invoice = ({ cart }) => {
 
       let facturaCreada = await fetchApi("/facturas/crear", "POST", body)
       let datosFactura = await fetchApi(`/facturas/lista/${facturaCreada.id}`)
+      console.log("~ datosFactura", datosFactura)
+
       setFactura(datosFactura)
     }
     fetching()
@@ -72,7 +74,7 @@ const Invoice = ({ cart }) => {
     )
   }
 
-  return (
+  return factura.cliente ? (
     <div>
       <h2>Consolidar Factura</h2>
       <h1>Factura</h1>
@@ -112,6 +114,8 @@ const Invoice = ({ cart }) => {
         <button onClick={() => exportPDF()}>Generar PDF</button>
       </div>
     </div>
+  ) : (
+    <></>
   )
 }
 

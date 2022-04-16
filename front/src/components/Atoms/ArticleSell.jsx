@@ -55,7 +55,6 @@ const ArticleSell = ({ item, cart, addVentaToCart, deleteVentaFromCart }) => {
           <button className="btn btn-outline-dark" onClick={() => actualizarCompra()}>
             Actualizar
           </button>
-          <h5>✅</h5>
         </>
       ) : (
         <></>
