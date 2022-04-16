@@ -19,39 +19,51 @@ const Provider = ({ provider }) => {
   return (
     <div>
       {!editando ? (
-        <article className="s-shadow-bottom">
-          <div className="s-bg-black s-pxy-2">
-            <h5>Id: {provider.id}</h5>
-            <h5>Nombre proveedor: {provider.nombreProovedor}</h5>
-            <h5>Numero de telefono: {provider.telefonoProovedor}</h5>
-          </div>
-          <button className="btn btn-outline-dark" onClick={() => setEditando(true)}>
-            Editar
-          </button>
-        </article>
+        <div className="container">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NOMBRE PROOVEDOR</th>
+                <th>NUMERO DE TELEFONO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="table-primary">
+                <th>{provider.id}</th>
+                <th>{provider.nombreProovedor}</th>
+                <th>{provider.telefonoProovedor}</th>
+              </tr>
+              <button className="btn btn-outline-primary" onClick={() => setEditando(true)}>
+                Editar
+              </button>
+            </tbody>
+          </table>
+        </div>
       ) : (
-        <article className="s-shadow-bottom">
-          <div className="s-bg-black s-pxy-2">
+        <article className="card border-info mb-3" style={{ width: "20rem", display: "flex" }}>
+          <div className="card-body">
+            <p>Nombre proveedor: {provider.nombreProovedor}</p>
             <input
               type="text"
               required
               placeholder="Actualiza el nombre"
               onChange={(e) => setTemporal({ ...temporal, nombreProovedor: e.target.value })}
+              className="form-control"
             />
-            <h5>Nombre proveedor: {provider.nombreProovedor}</h5>
-
+            <p className="mt-2">Numero de telefono: {provider.telefonoProovedor}</p>
             <input
               type="text"
               required
               placeholder="Actualiza el numero de telefono"
               onChange={(e) => setTemporal({ ...temporal, telefonoProovedor: e.target.value })}
+              className="form-control"
             />
-            <h5>Numero de telefono: {provider.telefonoProovedor}</h5>
           </div>
-          <button className="btn btn-outline-dark" onClick={() => cancelar()}>
+          <button className="btn btn-outline-danger" onClick={() => cancelar()}>
             Cancelar
           </button>
-          <button className="btn btn-outline-dark" onClick={() => guardar()}>
+          <button className="btn btn-outline-success" onClick={() => guardar()}>
             Guardar
           </button>
         </article>

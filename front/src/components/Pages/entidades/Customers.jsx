@@ -33,45 +33,40 @@ const Customers = () => {
         <h1>Clientes</h1>
       </div>
       {creando ? (
-        <article>
+        <article className="card border-info mt-3 mb-3" style={{ width: "20rem" }}>
           <div className="s-bg-black s-pxy-2">
-            <input
-              type="text"
-              required
-              placeholder="Actualiza el nombre"
-              onChange={(e) => setTemporal({ ...temporal, nombreCliente: e.target.value })}
-            />
             <h5>Nombre cliente: {customer.nombreCliente}</h5>
-
             <input
               type="text"
               required
-              placeholder="Actualiza el numero de telefono"
-              onChange={(e) => setTemporal({ ...temporal, numeroTelefono: e.target.value })}
+              onChange={(e) => setTemporal({ ...temporal, nombreCliente: e.target.value })}
+              className="form-control"
             />
             <h5>Numero de telefono: {customer.numeroTelefono}</h5>
+            <input
+              type="text"
+              required
+              onChange={(e) => setTemporal({ ...temporal, numeroTelefono: e.target.value })}
+              className="form-control"
+            />
           </div>
-          <button className="btn btn-outline-secondary" onClick={() => cancelar()}>
+          <button onClick={() => cancelar()} className="btn btn-outline-danger">
             Cancelar
           </button>
-          <button className="btn btn-outline-secondary" onClick={() => crearCliente()}>
+          <button className="btn btn-outline-success" onClick={() => crearCliente()}>
             Guardar
           </button>
         </article>
       ) : (
         <div>
           <table className="table table-hover table-ligth">
-            {customer.map((cus) => (
-              <tbody>
-                <tr className="table-secondary">
-                  <th>
-                    <Customer customer={cus} key={cus.id} />
-                  </th>
-                </tr>
-              </tbody>
-            ))}
+            <tbody>
+              {customer.map((cus) => (
+                <Customer customer={cus} key={cus.id} />
+              ))}
+            </tbody>
           </table>
-          <button className="btn btn-outline-secondary" onClick={() => setCreando(true)}>
+          <button className="btn btn-outline-success mb-4" onClick={() => setCreando(true)}>
             Crear cliente
           </button>
         </div>

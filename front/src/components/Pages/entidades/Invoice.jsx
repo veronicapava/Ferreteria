@@ -50,7 +50,7 @@ const Invoice = ({ cart }) => {
       let body = {
         fecha: "2022-03-30",
         cliente: {
-          id: "ebb",
+          id: "f55",
         },
         nombreVendedor: "Ana",
         productosComprados: cart.map((id) => ({ id })),
@@ -75,16 +75,30 @@ const Invoice = ({ cart }) => {
   }
 
   return factura.cliente ? (
-    <div>
-      <h2>Consolidar Factura</h2>
-      <h1>Factura</h1>
-      <h2>Factura: {factura.id}</h2>
-      <h2>Fecha: {factura.fecha}</h2>
-      <h2>Cliente: {factura.cliente.id}</h2>
-      <h2>Cliente nombre: {factura.cliente.nombreCliente}</h2>
-      <h2>Nombre vendedor: {factura.nombreVendedor}</h2>
-      <h2>Cliente telefono: {factura.cliente.numeroTelefono}</h2>
-      <h2>Productos comprados: </h2>
+    <div className="container">
+      <table className="table mt-5">
+        <thead>
+          <tr>
+            <th>Factura #</th>
+            <th>Fecha</th>
+            <th>Cliente id</th>
+            <th>Nombre Cliente</th>
+            <th>Cliente teléfono</th>
+            <th>Nombre vendedor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="table">
+            <th>{factura.id}</th>
+            <th>{factura.fecha}</th>
+            <th>{factura.cliente.id}</th>
+            <th>{factura.cliente.nombreCliente}</th>
+            <th>{factura.cliente.numeroTelefono}</th>
+            <th>{factura.nombreVendedor}</th>
+          </tr>
+        </tbody>
+      </table>
+      <h1>Productos comprados</h1>
       <table className="table table-hover table-dark">
         <thead>
           <tr>
@@ -111,7 +125,9 @@ const Invoice = ({ cart }) => {
       </p>
 
       <div>
-        <button onClick={() => exportPDF()}>Generar PDF</button>
+        <button onClick={() => exportPDF()} className="btn btn-outline-success mb-5">
+          Generar PDF
+        </button>
       </div>
     </div>
   ) : (

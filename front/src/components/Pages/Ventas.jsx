@@ -30,7 +30,7 @@ const Ventas = () => {
       </div>
       <div className="mt-5">
         <Link to="/factura">
-          <button className="btn btn-outline-dark">Generar factura</button>
+          <button className="btn btn-outline-dark mb-5">Generar factura</button>
         </Link>
       </div>
     </div>

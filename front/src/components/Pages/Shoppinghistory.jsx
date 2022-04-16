@@ -16,7 +16,7 @@ const Shoppinghistory = () => {
   return (
     <div className="container mt-5">
       <Header />
-      <h3>Shopping history</h3>
+      <h3 className="mb-3">Historial de compras</h3>
       <div>
         <table className="table table-hover table-dark">
           <thead>

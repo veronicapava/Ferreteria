@@ -17,13 +17,14 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="mt-5">
-        <h4 className="title">Hello {user.displayName || user.email}</h4>
+      <div className="mt-5 mb-5">
+        <Header />
+        <h4 className="title">Bienvenid@ {user.displayName || user.email}</h4>
         <h1>POS Ferretería Don Raúl</h1>
       </div>
-      <Header />
+
       <div>
-        <button className="btn btn-secondary my-2 my-sm-0" onClick={handleLogout}>
+        <button className="btn btn-danger" onClick={handleLogout}>
           Logout
         </button>
       </div>

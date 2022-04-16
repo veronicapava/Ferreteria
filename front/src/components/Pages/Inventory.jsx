@@ -27,39 +27,51 @@ const Inventory = () => {
   return (
     <div className="container mt-5">
       <Header />
-      <h1>Inventario</h1>
-      <h1>Articulos en inventario</h1>
+      <h1 className="mt-4 mb-4">Articulos en inventario</h1>
 
-      <button onClick={() => setCreando(true)}>Crear nuevo articulo</button>
+      <button onClick={() => setCreando(true)} className="btn btn-lg btn-primary">
+        Crear nuevo articulo
+      </button>
       {creando ? (
-        <article>
-          <input
-            type="text"
-            placeholder="nombreprod"
-            onChange={(e) => setNuevoProd({ ...nuevoProd, nombreProducto: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="preciounid"
-            onChange={(e) => setNuevoProd({ ...nuevoProd, precioUnd: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="cantidad en bodega"
-            onChange={(e) => setNuevoProd({ ...nuevoProd, cantidadEnBodega: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="cantidad maxima "
-            onChange={(e) => setNuevoProd({ ...nuevoProd, cantidadMax: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="cantidad minima"
-            onChange={(e) => setNuevoProd({ ...nuevoProd, cantidadMin: e.target.value })}
-          />
-          <button onClick={() => crearArticle()}>Guardar</button>
-          <button onClick={() => setCreando(false)}>Cancelar</button>
+        <article className="card border-info mt-3" style={{ width: "20rem", display: "flex" }}>
+          <div className="card-body">
+            <input
+              type="text"
+              placeholder="Nombre producto"
+              onChange={(e) => setNuevoProd({ ...nuevoProd, nombreProducto: e.target.value })}
+              className="form-control"
+            />
+            <input
+              type="number"
+              placeholder="Precio unidad"
+              onChange={(e) => setNuevoProd({ ...nuevoProd, precioUnd: e.target.value })}
+              className="form-control"
+            />
+            <input
+              type="number"
+              placeholder="Cantidad en bodega"
+              onChange={(e) => setNuevoProd({ ...nuevoProd, cantidadEnBodega: e.target.value })}
+              className="form-control"
+            />
+            <input
+              type="number"
+              placeholder="Cantidad maxima "
+              onChange={(e) => setNuevoProd({ ...nuevoProd, cantidadMax: e.target.value })}
+              className="form-control"
+            />
+            <input
+              type="number"
+              placeholder="Cantidad minima"
+              onChange={(e) => setNuevoProd({ ...nuevoProd, cantidadMin: e.target.value })}
+              className="form-control"
+            />
+          </div>
+          <button onClick={() => crearArticle()} className="btn btn-outline-success">
+            Guardar
+          </button>
+          <button onClick={() => setCreando(false)} className="btn btn-outline-danger">
+            Cancelar
+          </button>
         </article>
       ) : (
         <div className="container">

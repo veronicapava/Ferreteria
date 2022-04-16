@@ -20,7 +20,7 @@ const Providers = () => {
         <h1>Proveedores</h1>
       </div>
 
-      <div className="ed-container">
+      <div className="container">
         {provider.map((prov) => (
           <Provider provider={prov} key={prov.id} />
         ))}

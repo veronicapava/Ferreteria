@@ -21,19 +21,25 @@ const Customer = ({ customer }) => {
     <div>
       {!editando ? (
         <div className="container">
-          <table className="table table-hover table-ligth">
+          <table className="table table-hover">
             <thead>
               <tr>
-                <h5>Id: {customer.id}</h5>
-                <h5>Nombre cliente: {customer.nombreCliente}</h5>
-                <h5>Numero de telefono: {customer.numeroTelefono}</h5>
+                <th>ID</th>
+                <th>NOMBRE CLIENTE</th>
+                <th>NUMERO DE TELEFONO</th>
               </tr>
             </thead>
+            <tbody>
+              <tr className="table-primary">
+                <th>{customer.id}</th>
+                <th>{customer.nombreCliente}</th>
+                <th>{customer.numeroTelefono}</th>
+              </tr>
+              <button className="btn btn-outline-secondary" onClick={() => setEditando(true)}>
+                Editar
+              </button>
+            </tbody>
           </table>
-
-          <button className="btn btn-outline-secondary" onClick={() => setEditando(true)}>
-            Editar
-          </button>
         </div>
       ) : (
         <article>

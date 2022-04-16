@@ -28,34 +28,45 @@ const ArticleSell = ({ item, cart, addVentaToCart, deleteVentaFromCart }) => {
   }
 
   return (
-    <div className="row">
-      <div className="card border-success mb-3" style={{ width: "20rem", display: "flex" }}>
-        <h5 className="card-header">
-          <b>Producto: {item.nombreProducto}</b>
-        </h5>
-        <h5>Cantidad a comprar: </h5>
-        <input type="number" placeholder="Cantidad a comprar" onChange={(e) => setCantidad(Number(e.target.value))} />
-        <h5>Precio unidad: COP {item.precioUnd}</h5>
-        <h5>Cantidad en bodega: {item.cantidadEnBodega}</h5>
-        {item.cantidadEnBodega < 0 ? <p>Limite minimo</p> : <></>}
+    <div className="container">
+      <div className="card-group mt-3">
+        <div className="row">
+          <div className="card border-info mt-3 mb-3" style={{ width: "20rem", display: "flex" }}>
+            <h5 className="card-header">
+              <b>Producto: {item.nombreProducto}</b>
+            </h5>
+            <div className="card-body">
+              <h5>Cantidad a comprar: </h5>
+              <input
+                type="number"
+                placeholder="Cantidad a comprar"
+                onChange={(e) => setCantidad(Number(e.target.value))}
+                className="form-control mt-2 mn-2"
+              />
+              <h5>Precio unidad: COP {item.precioUnd}</h5>
+              <h5>Cantidad en bodega: {item.cantidadEnBodega}</h5>
+              {item.cantidadEnBodega < 0 ? <p>Limite minimo</p> : <></>}
 
-        {!compra.id ? (
-          <button className="btn btn-outline-dark btn-sm" onClick={() => comprar(item)}>
-            Comprar
-          </button>
-        ) : (
-          <></>
-        )}
+              {!compra.id ? (
+                <button className="btn btn-outline-success" onClick={() => comprar(item)}>
+                  Comprar
+                </button>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       {compra.id ? (
-        <>
-          <button className="btn btn-outline-dark" onClick={() => eliminarCompra()}>
+        <div className="card border-info mt-3 mb-3" style={{ width: "20rem", display: "flex" }}>
+          <button className="btn btn-outline-danger" onClick={() => eliminarCompra()}>
             Eliminar
           </button>
-          <button className="btn btn-outline-dark" onClick={() => actualizarCompra()}>
+          <button className="btn btn-outline-success" onClick={() => actualizarCompra()}>
             Actualizar
           </button>
-        </>
+        </div>
       ) : (
         <></>
       )}
