@@ -42,28 +42,30 @@ const Customer = ({ customer }) => {
           </table>
         </div>
       ) : (
-        <article>
-          <div className="s-bg-black s-pxy-2">
+        <article className="card border-info mt-3 mb-3" style={{ width: "30rem", display: "flex" }}>
+          <div className="card-body">
             <input
               type="text"
               required
               placeholder="Actualiza el nombre"
               onChange={(e) => setTemporal({ ...temporal, nombreCliente: e.target.value })}
+              className="form-control"
             />
             <h5>Nombre cliente: {customer.nombreCliente}</h5>
 
             <input
               type="text"
               required
-              placeholder="Actualiza el numero de telefono"
+              placeholder="Actualiza el número de teléfono"
               onChange={(e) => setTemporal({ ...temporal, numeroTelefono: e.target.value })}
+              className="form-control"
             />
             <h5>Numero de telefono: {customer.numeroTelefono}</h5>
           </div>
-          <button className="btn btn-outline-secondary" onClick={() => cancelar()}>
+          <button className="btn btn-outline-danger" onClick={() => cancelar()}>
             Cancelar
           </button>
-          <button className="btn btn-outline-secondary" onClick={() => guardar()}>
+          <button className="btn btn-outline-success" onClick={() => guardar()}>
             Guardar
           </button>
         </article>
