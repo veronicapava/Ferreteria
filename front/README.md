@@ -16,3 +16,19 @@ https://user-images.githubusercontent.com/86497954/161367910-c76b51c1-001f-418a-
 
 Despliegue en Firebase
 https://ferreteriaraul-53545.web.app
+
+Actualización de estilos 
+
+
+
+https://user-images.githubusercontent.com/86497954/163728887-05753ccc-140c-40d9-9e60-39ea8f08a9b7.mp4
+
+
+
+https://user-images.githubusercontent.com/86497954/163728889-56c02d5f-adb5-4078-9d90-df4c00f022fd.mp4
+
+
+
+
+https://user-images.githubusercontent.com/86497954/163728894-87f8a491-dc3e-4838-9c34-bc79d1fcf1b0.mp4
+
